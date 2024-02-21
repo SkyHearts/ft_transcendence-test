@@ -24,3 +24,30 @@ A few useful things to note
 2. To check database via admin dashboard, create superuser by running, python migrate.py createsuperuser, then login via browser through, 127.0.0.1/admin
 3. To login through allauth, use homepage or 127.0.0.1/accounts/login
 4. To singup through allauth, use hompage or 127.0.0.1/accounts/signup
+
+
+# allauth changes (.venv\Lib\site-packages\allauth\socialaccount\adapter.py)(def list_apps(self, request, provider=None, client_id=None):)
+```
+  # First, populate it with the DB backed apps.
+  if request:
+      db_apps = SocialApp.objects.on_site(request)
+      # print(db_apps, "Here")
+  else:
+      db_apps = SocialApp.objects.all()
+  # JJ, just load all socialapp objects from db
+  # db_apps = SocialApp.objects.all()
+  # print("request:", request, "db_apps:", db_apps, "Here2")
+```
+TO
+```
+  # First, populate it with the DB backed apps.
+  # if request:
+  #    db_apps = SocialApp.objects.on_site(request)
+  #    # print(db_apps, "Here")
+  # else:
+  #    db_apps = SocialApp.objects.all()
+  # JJ, just load all socialapp objects from db
+  db_apps = SocialApp.objects.all()
+  # To see request and apps loaded
+  print("request:", request, "db_apps:", db_apps, "Here2")
+```
