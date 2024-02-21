@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% block content %}
+
+    {% if request.user.is_authenticated %}
+
+        <h1>Hi {{ request.user.username }}!</h1>
+
+        <a href="{% url 'account_logout' %}">Logout</a>
+
+    {% else %}
+
+        <h1>Not logged in</h1>
+
+        <a class="btn" href="{% url 'account_login' %}">Login</a>
+        {% comment %} <a class="btn" href="{% provider_login_url 'provider' %}">42 Login</a> {% endcomment %}
+		<a href="{% provider_login_url 'fourtytwo' %}">42 Login</a>
+
+    {% endif %}
+
+{% endblock content %}
+
