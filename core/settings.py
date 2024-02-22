@@ -33,7 +33,7 @@ TEMPLATES = [
         # 'DIRS': [
 		# 	os.path.normalpath(os.path.join(BASE_DIR, 'templates'))
 		# ],
-		'DIRS': [ BASE_DIR / 'core/templates' ],
+		'DIRS': [ BASE_DIR / 'templates' ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -65,12 +65,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
 	'django_extensions',
-
+    #------
+    'users.apps.UsersConfig',
+    #------
 	'django.contrib.sites',
 	'allauth',
     'allauth.account',
 	'allauth.socialaccount',
 	'provider',
+    #------
+
 ]
 
 MIDDLEWARE = [
@@ -176,7 +180,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# STATIC_ROOT = BASE_DIR / 'static'
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Directory where uploaded media is saved.
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = 'media/' # Public URL at the browser
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
