@@ -8,7 +8,7 @@ Current implementation
 - [x] Normal account creation
 - [x] Password reset/verification
 - [ ] DB for user game data and relational mapping(use username)
-- [ ] Check signup for duplicate unique username
+- [x] Check signup for duplicate unique username 
 - [ ] migrate to postgres
 
 Installing using Windows
@@ -26,28 +26,7 @@ A few useful things to note
 4. To singup through allauth, use hompage or 127.0.0.1/accounts/signup
 
 
-# allauth changes (.venv\Lib\site-packages\allauth\socialaccount\adapter.py)(def list_apps(self, request, provider=None, client_id=None):)
-```
-  # First, populate it with the DB backed apps.
-  if request:
-      db_apps = SocialApp.objects.on_site(request)
-      # print(db_apps, "Here")
-  else:
-      db_apps = SocialApp.objects.all()
-  # JJ, just load all socialapp objects from db
-  # db_apps = SocialApp.objects.all()
-  # print("request:", request, "db_apps:", db_apps, "Here2")
-```
-TO
-```
-  # First, populate it with the DB backed apps.
-  # if request:
-  #    db_apps = SocialApp.objects.on_site(request)
-  #    # print(db_apps, "Here")
-  # else:
-  #    db_apps = SocialApp.objects.all()
-  # JJ, just load all socialapp objects from db
-  db_apps = SocialApp.objects.all()
-  # To see request and apps loaded
-  print("request:", request, "db_apps:", db_apps, "Here2")
-```
+# allauth settings
+1. Create superuser and login admin dashboard
+2. Add sites 127.0.01
+3. Add social application, set provider, client id, secret key, name and add site
