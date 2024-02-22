@@ -7,8 +7,9 @@ Current implementation
 - [x] 42oauth
 - [x] Normal account creation
 - [x] Password reset/verification
-- [ ] DB for user game data and relational mapping(use username)
-- [x] Check signup for duplicate unique username 
+- [ ] DB for user profile
+- [ ] App for friendrequest/friendlist
+- [ ] Check signup for duplicate unique username(social media username taken, new account cant be created with same username)
 - [ ] migrate to postgres
 
 Installing using Windows
