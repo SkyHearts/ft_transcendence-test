@@ -8,13 +8,19 @@ from django.conf import settings
 
 
 class FourtyTwoAdapter(OAuth2Adapter):
+    '''
+    Subclassing OAuth2Adapter to create custom provider
+    Sets all the links required to access 42api
+    '''
     provider_id = FourtyTwoProvider.id
-
     access_token_url = f'{settings.OAUTH_SERVER_BASEURL}/oauth/token'
     profile_url = f'{settings.OAUTH_SERVER_BASEURL}/v2/me'
     authorize_url = f'{settings.OAUTH_SERVER_BASEURL}/oauth/authorize'
 
     def complete_login(self, request, app, token, **kwargs):
+        '''
+        Get JSON response from 42api
+        '''
         # headers = {'Authorization': f'Bearer {token.token}', 'Accept':'application/json'}
         # useremail = kwargs['response']['useremail']
         # resp = requests.get(self.profile_url + f'{useremail}?type=email', headers=headers)
@@ -25,7 +31,7 @@ class FourtyTwoAdapter(OAuth2Adapter):
         )
         # print(response)
         extra_data = response.json()
-        print(extra_data)
+        # print(extra_data)
         return self.get_provider().sociallogin_from_response(request, extra_data)
 
 

@@ -190,6 +190,12 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = 'media/' # Public URL at the browser
 
+# URL
+BASE_URL = "127.0.0.1:8000"
+
+# Upload settings
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760 # 10*1024*1024 (10mb)
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 

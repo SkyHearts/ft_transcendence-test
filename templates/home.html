@@ -3,11 +3,13 @@
 {% block content %}
 
     {% if request.user.is_authenticated %}
-        <h1>Hi {{ request.user.username }}!</h1>
+        <h1>Hi</j1>
+        <h1>
+        <a href="{% url 'profile:view' username=request.user.username %}">{{ request.user.username }}</a>
+        </h1>
         <img class="rounded" src=".{{ request.user.profile.image.url }}">
-        {% comment %} <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}"> {% endcomment %}
-        
-
+       
+    
         <a href="{% url 'account_logout' %}">Logout</a>
 
     {% else %}
