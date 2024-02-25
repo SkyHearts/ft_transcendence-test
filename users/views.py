@@ -43,14 +43,19 @@ def profile_view(request, *args, **kwargs):
             is_self = False
         elif not user.is_authenticated:
             is_self = False
-
+        # if kwargs.get('JSON'):
+        #     is_JSON = True
+        # else:
+        is_JSON = bool(request.GET.get('JSON'))
         context["is_self"] = is_self
         context["is_friend"] = is_friend
         context["BASE_URL"] = settings.BASE_URL
 
-        return render(request, "profile.html", context)
+        if is_JSON is False:
+            return render(request, "profile.html", context)
+        else:
         # To get JSON data about profile
-        # return HttpResponse(json.dumps(context), content_type="application/json")
+            return HttpResponse(json.dumps(context), content_type="application/json")
 
 def edit_profile_view(request, *args, **kwargs):
     if not request.user.is_authenticated:
@@ -85,7 +90,7 @@ def edit_profile_view(request, *args, **kwargs):
             )
             context['form'] = form
     else:
-        form = ProfileUpdateForm(request.POST, instance=request.user,
+        form = ProfileUpdateForm(
                 initial = {
                     # "id": profile.user.pk,
                     "image": profile.image,

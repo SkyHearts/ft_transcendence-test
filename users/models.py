@@ -9,6 +9,7 @@ from django.conf import settings
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    print("user_directory_path: instance:", instance, "instance.pk:", instance.pk, "instance.user.pk:",instance.user.pk)
     return '{0}/{1}'.format(instance.user.username, "profile_pic")
 
 # def user_name(instance):

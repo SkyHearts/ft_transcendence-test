@@ -67,6 +67,7 @@ INSTALLED_APPS = [
 	'django_extensions',
     #------
     'users.apps.UsersConfig',
+    # 'friend'
     #------
 	'django.contrib.sites',
 	'allauth',

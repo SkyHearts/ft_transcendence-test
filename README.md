@@ -7,8 +7,8 @@ Current implementation
 - [x] 42oauth
 - [x] Normal account creation
 - [x] Password reset/verification
-- [ ] DB for user profile
-- [ ] App for friendrequest/friendlist
+- [ ] DB for user profile (Current DB includes:nick_name,is_online,image,hide_email)(To be implemented:friendlist,history,stats)
+- [ ] App for friendrequest/friendlist (create db with user as pk, with one to many to other user)
 - [ ] Check signup for duplicate unique username(social media username taken, new account cant be created with same username)
 - [ ] migrate to postgres
 
