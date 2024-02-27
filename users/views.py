@@ -37,6 +37,7 @@ def profile_view(request, *args, **kwargs):
         # Define template variable
         is_self = True
         is_friend = False
+        hide_email = profile.hide_email
         user = request.user
         # print(user,profile)
         if user.is_authenticated and user != profile.user:
@@ -48,6 +49,7 @@ def profile_view(request, *args, **kwargs):
         # else:
         is_JSON = bool(request.GET.get('JSON'))
         context["is_self"] = is_self
+        context["hide_email"] = hide_email
         context["is_friend"] = is_friend
         context["BASE_URL"] = settings.BASE_URL
 
@@ -69,6 +71,7 @@ def edit_profile_view(request, *args, **kwargs):
         print("user does not exist")
         return HttpResponse("profile does not exist")
     user = request.user
+    print("user:", profile.image.url)
     if user != profile.user:
         return HttpResponse("Unable to edit someone elses profile")
     context = {}
@@ -76,6 +79,10 @@ def edit_profile_view(request, *args, **kwargs):
         form = ProfileUpdateForm(request.POST, request.FILES, instance=profile)
         print("Instance is: ", request.user)
         if form.is_valid():
+            profile1 = Profile.objects.get(user__username=username)
+            print("form:", profile1.image.url)
+            if profile1.image.url != "/media/default.jpg":
+                profile1.image.delete()
             form.save()
             print("form is saved")
             return redirect("profile:view", username=profile.user)
